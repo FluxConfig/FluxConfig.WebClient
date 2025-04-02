@@ -1,5 +1,8 @@
-import {Box, Container, Typography} from "@mui/material";
+import {Box, Container} from "@mui/material";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import Login from "./components/Auth/Login";
+import ProtectedRoute from "./components/Auth/ProtectedRoute.tsx";
+import Register from "./components/Auth/Register.tsx";
 
 function App() {
 
@@ -20,22 +23,25 @@ function App() {
               }}
               disableGutters>
             <Routes>
-              <Route path = '/' element={(
-                  <>
-                      <Typography variant="h6">
-                          FluxConfig
-                      </Typography>
-              </>)}/>
-              <Route path="*" element={
-                <Navigate
-                    to="/"
-                    replace
-                    state={{
-                      from: '404',
-                      message: 'Page not found'
-                    }}
-                />
-              } />
+                <Route path="/sign-in" element={<Login/>}/>
+                <Route path="/sign-up" element={<Register/>}/>
+
+                <Route element={<ProtectedRoute/>}>
+                    <Route path = '/' element={(
+                        <>
+                        </>)}/>
+
+                    <Route path="*" element={
+                        <Navigate
+                            to="/"
+                            replace
+                            state={{
+                                from: '404',
+                                message: 'Page not found'
+                            }}
+                        />
+                    } />
+                </Route>
             </Routes>
           </Container>
         </Box>

@@ -8,7 +8,7 @@ import {
     GetUserMetaRequest,
     GetUserMetaResponse
 } from "../Interfaces/Contracts/userCredentialsContracts.ts";
-import api, {ApiError, FluxConfigManagementError, ProcessError} from "./api.ts";
+import api, {ApiError, FluxConfigManagementError, newAbortSignal, ProcessError} from "./api.ts";
 import {AxiosError} from "axios";
 import {validateEmail, validatePassword, validateUsername, validateUserSystemRoleStringEnum} from "./validators.ts";
 
@@ -25,6 +25,9 @@ export const SystemUsersService = {
                 "user/change/email",
                 {
                     new_email: trimmedEmail
+                },
+                {
+                    signal: newAbortSignal(5000)
                 }
             )
 
@@ -59,6 +62,9 @@ export const SystemUsersService = {
                 "/user/change/password",
                 {
                     new_password: request.new_password.trim()
+                },
+                {
+                    signal: newAbortSignal(5000)
                 }
             )
 
@@ -93,6 +99,9 @@ export const SystemUsersService = {
                 "/user/change/username",
                 {
                     new_username: trimmedUsername
+                },
+                {
+                    signal: newAbortSignal(5000)
                 }
             )
 
@@ -120,7 +129,10 @@ export const SystemUsersService = {
     async deleteSelfAccount() {
         try {
             const response = await api.delete(
-                "/user/delete"
+                "/user/delete",
+                {
+                    signal: newAbortSignal(5000)
+                }
             )
 
             return response.data;
@@ -147,7 +159,8 @@ export const SystemUsersService = {
             const response = await api.delete(
                 "/user/admin/delete",
                 {
-                    data: request
+                    data: request,
+                    signal: newAbortSignal(5000)
                 }
             )
 
@@ -176,7 +189,10 @@ export const SystemUsersService = {
 
             await api.patch(
                 "/user/admin/change-user-role",
-                request
+                request,
+                {
+                    signal: newAbortSignal(5000)
+                }
             )
 
             return request.role;
@@ -203,7 +219,10 @@ export const SystemUsersService = {
     async getAllUsers(): Promise<GetSystemUserResponse[]> {
         try {
             const response = await api.get<GetSystemUserResponse[]>(
-                "/user/admin/get-users"
+                "/user/admin/get-users",
+                {
+                    signal: newAbortSignal(5000)
+                }
             )
 
             return response.data;
@@ -221,7 +240,10 @@ export const SystemUsersService = {
     async getUserMeta(request: GetUserMetaRequest): Promise<GetUserMetaResponse> {
         try {
             const response = await api.get<GetUserMetaResponse>(
-                `/user/admin/get-user?Id=${request.id}`
+                `/user/admin/get-user?Id=${request.id}`,
+                {
+                    signal: newAbortSignal(5000)
+                }
             )
 
             return response.data;

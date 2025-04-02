@@ -1,7 +1,7 @@
 import api, {
     ApiError,
     FluxConfigManagementError,
-    mapRoleStringEnumToType,
+    mapRoleStringEnumToType, newAbortSignal,
     ProcessError
 } from "./api.ts";
 import {AxiosError} from "axios";
@@ -47,7 +47,9 @@ export const AuthService = {
 
             const response = await api.post<LoginResponseRaw>(
                 "/auth/login",
-                request
+                request, {
+                    signal: newAbortSignal(5000)
+                }
             )
 
             const rawResponse: LoginResponseRaw =  response.data;
@@ -91,6 +93,9 @@ export const AuthService = {
                     username: request.username.trim(),
                     email: request.email.trim(),
                     password: request.password.trim()
+                },
+                {
+                    signal: newAbortSignal(5000)
                 }
             )
 
@@ -122,7 +127,8 @@ export const AuthService = {
         try {
             const response = await api.get<CheckAuthResponseRaw>(
                 "/auth/check-auth", {
-                    withCredentials: true
+                    withCredentials: true,
+                    signal: newAbortSignal(5000)
                 }
             )
 
@@ -151,7 +157,10 @@ export const AuthService = {
     async logout() {
         try {
             const response = await api.delete(
-                "/auth/logout"
+                "/auth/logout",
+                {
+                    signal: newAbortSignal(5000)
+                }
             );
 
             return response.data;

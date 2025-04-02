@@ -2,7 +2,8 @@ import {User } from "../State/userStateTypes.ts";
 
 export interface LoginCredentials {
     email: string,
-    password: string
+    password: string,
+    remember_user: boolean
 }
 
 export interface RegisterCredentials {

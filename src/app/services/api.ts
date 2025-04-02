@@ -11,7 +11,6 @@ const api = axios.create({
         "Content-Type": "application/json",
     },
     withCredentials: true,
-    signal: newAbortSignal(5000)
 })
 
 api.interceptors.request.use(
