@@ -11,6 +11,7 @@ import {mapConfigRoleTypEnumToString} from "../../app/Mappers/enumMappers.ts";
 import {UserConfigurationRole} from "../../app/Interfaces/State/configurationsGeneralTypes.ts";
 import ConfigurationSettingsSection from "./ConfigurationSettings/ConfigurationSettingsSection.tsx";
 import ConfigurationUsersSection from "./ConfigurationUsers/ConfigurationUsersSection.tsx";
+import ConfigurationKeysSection from "./ConfigurationKeys/ConfigurationKeysSection.tsx";
 
 type ConfigurationIdRouteParams = {
     configurationId: string
@@ -53,8 +54,11 @@ function ConfigurationPage() {
             //TODO: Add
             // case 0:
             //     return <SettingsTab config={selectedConfiguration} />;
-            // case 1:
-            //     return <KeysTab config={selectedConfiguration} />;
+            case 1:
+                return <ConfigurationKeysSection
+                    configurationId={configurationIdNum}
+                    configurationRole={selectedConfiguration ? selectedConfiguration.user_role : UserConfigurationRole.Member}
+                />
             case 2:
                 return <ConfigurationUsersSection
                     configurationId={configurationIdNum}
@@ -160,7 +164,7 @@ function ConfigurationPage() {
                                 textColor="secondary"
                             >
                                 <Tab label="Tags" />
-                                <Tab label="Keys" />
+                                <Tab label="API Keys" />
                                 <Tab label="Members" />
                                 {selectedConfiguration.user_role === UserConfigurationRole.Admin && (
                                     <Tab label="Settings" />

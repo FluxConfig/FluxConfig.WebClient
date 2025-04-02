@@ -36,8 +36,8 @@ export function validateUserSystemRoleStringEnum(userSystemRole: string): void {
     }
 }
 
-export function validateUserConfigurationRoleStringEnum(userSystemRole: string): void {
-    if (userSystemRole !== "Member" && userSystemRole !== "Admin") {
+export function validateUserConfigurationRoleStringEnum(userConfigurationRole: string): void {
+    if (userConfigurationRole !== "Member" && userConfigurationRole !== "Admin") {
         throw new FluxConfigManagementError("Invalid user configuration role value.");
     }
 }

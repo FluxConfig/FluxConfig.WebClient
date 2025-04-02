@@ -1,4 +1,5 @@
-import { useState} from "react";
+import {ConfigurationKey} from "../../../../app/Interfaces/State/configurationKeysTypes.ts";
+import {useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../../app/hooks.ts";
 import {
     Alert,
@@ -12,23 +13,22 @@ import {
     DialogTitle
 } from "@mui/material";
 import {
-    clearDeleteUserError, clearDeleteUserSuccess,
-    deleteUserFromConfigurationAsync,
-    getConfigurationUsersAsync
-} from "../../../../app/storeSlices/configurationUsersSlice.ts";
-import {ConfigurationMember} from "../../../../app/Interfaces/State/configurationUsersTypes.ts";
+    clearDeleteKeyError, clearDeleteKeySuccess,
+    deleteConfigurationKeyAsync,
+    getConfigurationKeysAsync
+} from "../../../../app/storeSlices/configurationKeysSlice.ts";
 
-function DeleteUserFromConfigurationSection({configurationId, configurationUser }: {configurationId: number, configurationUser: ConfigurationMember}) {
+function DeleteConfigurationKeySection({configurationId, configurationKey}: {configurationId: number, configurationKey: ConfigurationKey}) {
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-    const {isDeleteUserLoading, deleteUserSuccess, deleteUserError} = useAppSelector((state) => state.configuration_users);
+    const {isDeleteKeyLoading, deleteKeySuccess, deleteKeyError} = useAppSelector((state) => state.configuration_keys);
     const dispatch = useAppDispatch();
 
     const handleDeleteUserFromConfig = async () => {
         let isRequestValid: boolean = true;
         try {
-            await dispatch(deleteUserFromConfigurationAsync({
+            await dispatch(deleteConfigurationKeyAsync({
                 configuration_id: configurationId,
-                user_id: configurationUser.id
+                key_id: configurationKey.id
             })).unwrap();
         } catch (error) {
             console.error(error);
@@ -36,19 +36,19 @@ function DeleteUserFromConfigurationSection({configurationId, configurationUser 
         }
 
         if (isRequestValid) {
-            await dispatch(getConfigurationUsersAsync({configuration_id: configurationId}));
+            await dispatch(getConfigurationKeysAsync({configuration_id: configurationId}));
         }
     };
 
     const handleClose = () => {
-        dispatch(clearDeleteUserError());
-        dispatch(clearDeleteUserSuccess());
+        dispatch(clearDeleteKeyError());
+        dispatch(clearDeleteKeySuccess());
         setDeleteDialogOpen(false);
     };
 
     const handleOpen = () => {
-        dispatch(clearDeleteUserError());
-        dispatch(clearDeleteUserSuccess());
+        dispatch(clearDeleteKeyError());
+        dispatch(clearDeleteKeySuccess());
         setDeleteDialogOpen(true);
     }
 
@@ -58,50 +58,54 @@ function DeleteUserFromConfigurationSection({configurationId, configurationUser 
                 variant="outlined"
                 color="error"
                 onClick={handleOpen}
-                disabled={ isDeleteUserLoading }
+                disabled={ isDeleteKeyLoading }
+                size="small"
+                sx={{
+                    width: '100px'
+                }}
             >
                 Delete
             </Button>
 
             <Dialog open={deleteDialogOpen} onClose={handleClose} maxWidth="sm" fullWidth>
-                <DialogTitle>Delete user from configuration</DialogTitle>
+                <DialogTitle>Delete configuration api key</DialogTitle>
                 <DialogContent>
                     <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
-                        {deleteUserError && (
+                        {deleteKeyError && (
                             <Alert severity="warning" sx={{ mb: 2 }}>
-                                {deleteUserError}
+                                {deleteKeyError}
                             </Alert>
                         )}
 
-                        {deleteUserSuccess && (
+                        {deleteKeySuccess && (
                             <Alert severity="success" sx={{ mb: 2 }}>
-                                {deleteUserSuccess}
+                                {deleteKeySuccess}
                             </Alert>
                         )}
 
                     </Box>
 
                     <DialogContentText sx={{ fontSize: '1.05rem' }}>
-                        Are you sure you want to delete {configurationUser ? configurationUser.username : "this user"} from configuration?
+                        Are you sure you want to delete this API key?
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    {!deleteUserSuccess ? (
+                    {!deleteKeySuccess ? (
                         <>
                             <Button
                                 onClick={handleClose}
                                 color="secondary"
-                                disabled={isDeleteUserLoading}>
+                                disabled={isDeleteKeyLoading}>
                                 Cancel
                             </Button>
                             <Button
                                 onClick={handleDeleteUserFromConfig}
                                 color="error"
                                 variant="contained"
-                                disabled={isDeleteUserLoading}
-                                startIcon={isDeleteUserLoading&& <CircularProgress size={20} color="inherit" />}
+                                disabled={isDeleteKeyLoading}
+                                startIcon={isDeleteKeyLoading&& <CircularProgress size={20} color="inherit" />}
                             >
-                                {isDeleteUserLoading ? 'Deleting...' : 'Delete'}
+                                {isDeleteKeyLoading? 'Deleting...' : 'Delete'}
                             </Button>
                         </>
                     ) : (
@@ -118,4 +122,4 @@ function DeleteUserFromConfigurationSection({configurationId, configurationUser 
     );
 }
 
-export default DeleteUserFromConfigurationSection;
+export default DeleteConfigurationKeySection;

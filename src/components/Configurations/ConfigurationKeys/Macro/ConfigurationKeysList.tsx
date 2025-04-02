@@ -1,37 +1,36 @@
-import {UserConfigurationRole} from "../../../../app/Interfaces/State/configurationsGeneralTypes.ts";
 import React, {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../../app/hooks.ts";
-import {getConfigurationUsersAsync} from "../../../../app/storeSlices/configurationUsersSlice.ts";
+import {UserConfigurationRole} from "../../../../app/Interfaces/State/configurationsGeneralTypes.ts";
+import {getConfigurationKeysAsync} from "../../../../app/storeSlices/configurationKeysSlice.ts";
 import {Alert, AlertTitle, Box, CircularProgress, Pagination} from "@mui/material";
 import Grid from "@mui/material/Grid";
-import ConfigurationUserMetaItem from "./ConfigurationUserMetaItem.tsx";
+import ConfigurationKeyMetaItem from "./ConfigurationKeyMetaItem.tsx";
 
-
-interface ConfigurationUsersListProps {
-    usersPerPage: number,
+interface ConfigurationKeysListProps {
+    keysPerPage: number,
     configurationId: number,
     configurationRole: UserConfigurationRole
 }
 
-function ConfigurationUsersList({usersPerPage, configurationId, configurationRole}: ConfigurationUsersListProps) {
+function ConfigurationKeysList({keysPerPage, configurationId, configurationRole}: ConfigurationKeysListProps) {
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const {isLoading, configurationUsers, error} = useAppSelector((state) => state.configuration_users);
+    const {error, isLoading, configurationKeys} = useAppSelector((state) => state.configuration_keys);
 
     const dispatch = useAppDispatch();
 
-    const totalProducts = configurationUsers.length;
-    const totalPages = Math.ceil(totalProducts / usersPerPage);
-    const startIndex = (currentPage - 1) * usersPerPage;
-    const endIndex = startIndex + usersPerPage;
+    const totalProducts = configurationKeys.length;
+    const totalPages = Math.ceil(totalProducts / keysPerPage);
+    const startIndex = (currentPage - 1) * keysPerPage;
+    const endIndex = startIndex + keysPerPage;
 
-    const pageConfigurationUsers = configurationUsers.slice(startIndex, endIndex);
+    const pageConfigurationKeys = configurationKeys.slice(startIndex, endIndex);
 
     useEffect(() => {
-        const fetchUsers = async () => {
-            await dispatch(getConfigurationUsersAsync({configuration_id: configurationId})).unwrap();
+        const fetchKeys = async () => {
+            await dispatch(getConfigurationKeysAsync({configuration_id: configurationId})).unwrap();
         }
 
-        fetchUsers().catch(console.error);
+        fetchKeys().catch(console.error);
         setCurrentPage(1);
     }, [dispatch, configurationId]);
 
@@ -59,14 +58,15 @@ function ConfigurationUsersList({usersPerPage, configurationId, configurationRol
                         maxWidth: 600
                     }}
                 >
-                    <AlertTitle>Unable to load configuration members.</AlertTitle>
+                    <AlertTitle>Unable to load configuration keys.</AlertTitle>
                     {error}
                 </Alert>
             </Box>
         );
     }
 
-    if (!error && configurationUsers.length === 0){
+
+    if (!error && configurationKeys.length === 0){
         return (
             <Box  minHeight="20vh" display="flex" justifyContent="center" alignItems="center">
                 <Alert
@@ -77,11 +77,12 @@ function ConfigurationUsersList({usersPerPage, configurationId, configurationRol
                         maxWidth: 600
                     }}
                 >
-                    <AlertTitle>Configuration doesn't have any member.</AlertTitle>
+                    <AlertTitle>Configuration doesn't have keys.</AlertTitle>
                 </Alert>
             </Box>
         );
     }
+
 
     return (
         <>
@@ -94,10 +95,10 @@ function ConfigurationUsersList({usersPerPage, configurationId, configurationRol
                     pb: 1
                 }}
             >
-                {pageConfigurationUsers.map((user) => (
-                    <ConfigurationUserMetaItem
-                        key={user.id}
-                        configurationUser={user}
+                {pageConfigurationKeys.map((key) => (
+                    <ConfigurationKeyMetaItem
+                        key={key.id}
+                        configurationKey={key}
                         configurationId={configurationId}
                         configurationRole={configurationRole}
                     />
@@ -135,4 +136,4 @@ function ConfigurationUsersList({usersPerPage, configurationId, configurationRol
     );
 }
 
-export default ConfigurationUsersList;
+export default ConfigurationKeysList;
