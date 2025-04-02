@@ -46,10 +46,10 @@ const AccountSettings = () => {
 
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                     <Typography variant="subtitle1" sx={{ fontSize: '1.1rem' }}>
-                        <b>Email:</b> {user?.email}
+                        <b>Username:</b> {user?.username}
                     </Typography>
                     <Typography variant="subtitle1" sx={{ fontSize: '1.1rem' }}>
-                        <b>Username:</b> {user?.username}
+                        <b>Email:</b> {user?.email}
                     </Typography>
                     <Typography variant="subtitle1" sx={{ fontSize: '1.1rem' }}>
                         <b>Role:</b> {mapRoleTypEnumToString(user?.role || UserGlobalRole.Member)}
@@ -60,7 +60,7 @@ const AccountSettings = () => {
                 <Divider sx={{ width: '100%', my: 2, borderBottomWidth: '2px' }}/>
 
                 { error && (
-                    <Alert severity="error" sx={{ my: 2 }}>
+                    <Alert severity="warning" sx={{ my: 2 }}>
                         {error}
                     </Alert>
                 )}

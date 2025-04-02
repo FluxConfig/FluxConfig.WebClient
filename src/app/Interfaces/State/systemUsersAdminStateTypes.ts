@@ -4,7 +4,9 @@ export interface AdminSystemUsersState{
     selectedUser: SystemUserWithConfigs | null,
     systemUsers: SystemUser[],
     error: string | null,
-    isLoading: boolean
+    isLoading: boolean,
+    success: string | null,
+    deleteUserIsLoading: boolean
 }
 
 export interface SystemUser {

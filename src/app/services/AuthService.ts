@@ -72,8 +72,6 @@ export const AuthService = {
                         throw new FluxConfigManagementError("User doesnt exist.");
                     } else if (errorResponse.response.status === 400) {
                         throw new FluxConfigManagementError("Incorrect password provided.");
-                    } else if (errorResponse.response.status === 500) {
-                        throw new FluxConfigManagementError("Internal server error. Inspect FluxConfig Management api logs.");
                     }
                 }
             }

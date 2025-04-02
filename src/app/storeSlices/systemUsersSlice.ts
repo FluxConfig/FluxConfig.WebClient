@@ -11,7 +11,9 @@ const initialState : AdminSystemUsersState =  {
     selectedUser: null,
     systemUsers: [],
     error: null,
-    isLoading: false
+    isLoading: false,
+    success: null,
+    deleteUserIsLoading: false
 }
 
 export const changeUserRoleAsync = createAsyncThunk(
@@ -68,6 +70,9 @@ export const systemUsersSlice = createSlice({
     reducers: {
         clearError: (state) => {
             state.error = null;
+        },
+        clearSuccess: (state) => {
+            state.success = null;
         }
     },
     extraReducers: builder => {
@@ -102,29 +107,38 @@ export const systemUsersSlice = createSlice({
             .addCase(changeUserRoleAsync.pending, (state) => {
                 state.isLoading = true;
                 state.error = null;
+                state.success = null;
             })
-            .addCase(changeUserRoleAsync.fulfilled, (state) => {
+            .addCase(changeUserRoleAsync.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
+                if (state.selectedUser) {
+                    state.selectedUser.role = action.payload;
+                }
+                state.success = "Role changed"
             })
             .addCase(changeUserRoleAsync.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload as string;
+                state.success = null;
             })
             .addCase(deleteUserAccountAsync.pending, (state) => {
-                state.isLoading = true;
+                state.deleteUserIsLoading= true;
                 state.error = null;
+                state.success = null;
             })
             .addCase(deleteUserAccountAsync.fulfilled, (state) => {
-                state.isLoading = false;
+                state.deleteUserIsLoading = false;
                 state.error = null;
+                state.success = "Account deleted"
             })
             .addCase(deleteUserAccountAsync.rejected, (state, action) => {
-                state.isLoading = false;
+                state.deleteUserIsLoading = false;
                 state.error = action.payload as string;
+                state.success = null;
             })
     }
 })
 
-export const { clearError } = systemUsersSlice.actions;
+export const { clearError, clearSuccess } = systemUsersSlice.actions;
 export default systemUsersSlice.reducer;

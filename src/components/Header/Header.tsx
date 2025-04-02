@@ -1,8 +1,9 @@
-import { AppBar, Box, Button, Container, Toolbar, Typography } from "@mui/material";
+import {AppBar, Box, Button, Container, Divider, Toolbar, Typography} from "@mui/material";
 import {useAppSelector} from "../../app/hooks.ts";
 import { Link } from "react-router-dom";
 import LogoIcon from "../Icons/LogoIcon.tsx";
 import HeaderAccountMenu from "./HeaderAccountMenu.tsx";
+import {UserGlobalRole} from "../../app/Interfaces/State/userStateTypes.ts";
 
 function Header() {
     const { user } = useAppSelector((state) => state.user);
@@ -28,7 +29,7 @@ function Header() {
                             alignItems: 'center',
                             textTransform: 'none',
                             '&:hover': {
-                                backgroundColor: 'rgba(255, 255, 255, 0.08)'
+                                backgroundColor: 'rgba(0, 0, 0, 0.04)'
                             },
                             '& .MuiTypography-root': {
                                 fontSize: { xs: '1rem', sm: '1.25rem' }
@@ -49,6 +50,36 @@ function Header() {
                             FluxConfig
                         </Typography>
                     </Button>
+
+                    { (user && user.role === UserGlobalRole.Admin) &&
+                        <>
+                            <Divider
+                                orientation="vertical"
+                                variant="middle"
+                                flexItem
+                                sx={{
+                                    mx: 1,
+                                    borderColor: 'divider'
+                                }}
+                            />
+                            <Button
+                                component={Link}
+                                to="/system-users"
+                                variant="text"
+                                sx={{
+                                    textTransform: 'none',
+                                    color: 'text.primary',
+                                    '&:hover': {
+                                        backgroundColor: 'rgba(0, 0, 0, 0.04)'
+                                    },
+                                    mr: 2
+                                }}
+                            >
+                                Users
+                            </Button>
+                        </>
+                    }
+
                     <Box sx={{
                         ml: 'auto',
                         display: 'flex',
