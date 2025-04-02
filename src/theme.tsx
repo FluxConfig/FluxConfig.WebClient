@@ -5,6 +5,7 @@ const theme = createTheme({
         primary: {
             main: '#E4D7C1',
         },
+        //'#E4D7C1',
         secondary: {
             main: '#333333',
         },
@@ -19,6 +20,7 @@ const theme = createTheme({
                     '& .MuiOutlinedInput-root': {
                         '&.Mui-focused fieldset': {
                             borderColor: "#B9B28A"
+                            //"#B9B28A"
                         }
                     },
                     '& .MuiInputLabel-root': {
@@ -36,6 +38,13 @@ const theme = createTheme({
                 },
             },
         },
+        MuiTab: {
+            styleOverrides: {
+                root: {
+                    textTransform: "none",
+                }
+            }
+        }
     }
 });
 
