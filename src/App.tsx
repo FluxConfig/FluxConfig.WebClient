@@ -9,6 +9,7 @@ import UserConfigurationsPage from "./components/Configurations/UserConfiguratio
 import SystemUsersPage from "./components/SystemUsers/SystemUsersPage.tsx";
 import UserProfile from "./components/SystemUsers/UserProfile.tsx";
 import ConfigurationPage from "./components/Configurations/ConfigurationPage.tsx";
+import ConfigurationTagPage from "./components/Configurations/ConfigurationTagPage.tsx";
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
                         <Route path="/users/:userId" element={<UserProfile/>}/>
 
                         <Route path="/configurations/:configurationId" element={<ConfigurationPage/>}/>
+                        <Route path="/configurations/tags/:tagId" element={<ConfigurationTagPage/>}/>
 
                         <Route path="*" element={
                             <Navigate

@@ -12,6 +12,7 @@ import {UserConfigurationRole} from "../../app/Interfaces/State/configurationsGe
 import ConfigurationSettingsSection from "./ConfigurationSettings/ConfigurationSettingsSection.tsx";
 import ConfigurationUsersSection from "./ConfigurationUsers/ConfigurationUsersSection.tsx";
 import ConfigurationKeysSection from "./ConfigurationKeys/ConfigurationKeysSection.tsx";
+import ConfigurationTagsSection from "./ConfigurationTags/ConfigurationTagsSection.tsx";
 
 type ConfigurationIdRouteParams = {
     configurationId: string
@@ -51,9 +52,11 @@ function ConfigurationPage() {
 
     const renderTabContent = () => {
         switch(selectedTab) {
-            //TODO: Add
-            // case 0:
-            //     return <SettingsTab config={selectedConfiguration} />;
+            case 0:
+                return <ConfigurationTagsSection
+                    configurationId={configurationIdNum}
+                    configurationRole={selectedConfiguration ? selectedConfiguration.user_role : UserConfigurationRole.Member}
+                />
             case 1:
                 return <ConfigurationKeysSection
                     configurationId={configurationIdNum}
@@ -137,7 +140,7 @@ function ConfigurationPage() {
                                 alignItems: 'center',
                                 mb: 2
                             }}>
-                                <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                                <Typography variant="h5" component="h1" gutterBottom sx={{ fontWeight: 600 }}>
                                     {selectedConfiguration.name}
                                 </Typography>
 

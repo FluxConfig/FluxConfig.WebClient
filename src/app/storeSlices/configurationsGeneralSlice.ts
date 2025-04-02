@@ -113,8 +113,8 @@ export const configurationsGeneralSlice = createSlice({
     extraReducers: builder => {
         builder
             .addCase(getUserConfigurationsAsync.pending, (state) => {
-            state.isLoading = true;
-            state.error = null;
+                state.isLoading = true;
+                state.error = null;
             })
             .addCase(getUserConfigurationsAsync.fulfilled, (state, action) => {
                 state.isLoading = false;
