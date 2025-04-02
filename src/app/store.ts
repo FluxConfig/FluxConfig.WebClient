@@ -5,6 +5,7 @@ import configurationGeneralReducer from "./storeSlices/configurationsGeneralSlic
 import configurationUsersReducer from "./storeSlices/configurationUsersSlice.ts"
 import configurationKeysReducer from "./storeSlices/configurationKeysSlice.ts"
 import configurationTagsReducer from "./storeSlices/configurationTagsSlice.ts"
+import configurationDataReducer from "./storeSlices/configurationDataSlice.ts"
 
 export const store = configureStore({
     reducer: {
@@ -13,7 +14,8 @@ export const store = configureStore({
         configurations_general: configurationGeneralReducer,
         configuration_users: configurationUsersReducer,
         configuration_keys: configurationKeysReducer,
-        configuration_tags: configurationTagsReducer
+        configuration_tags: configurationTagsReducer,
+        configuration_data: configurationDataReducer
     }
 })
 

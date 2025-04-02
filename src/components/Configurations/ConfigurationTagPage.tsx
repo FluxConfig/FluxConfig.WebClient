@@ -1,12 +1,26 @@
-import { Link, Navigate, useLocation, useParams} from "react-router-dom";
+import {Link, Navigate, useLocation, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
 import {clearDeleteTagSuccess, getConfigurationTagAsync} from "../../app/storeSlices/configurationTagsSlice.ts";
 import {getConfigurationAsync} from "../../app/storeSlices/configurationsGeneralSlice.ts";
-import {Alert, Box, CircularProgress, Container, Divider, Paper, Typography, Tabs, Tab, Button, Link as MuiLink} from "@mui/material";
+import {
+    Alert,
+    Box,
+    Button,
+    CircularProgress,
+    Container,
+    Divider,
+    Link as MuiLink,
+    Paper,
+    Tab,
+    Tabs,
+    Typography
+} from "@mui/material";
 import {UserConfigurationRole} from "../../app/Interfaces/State/configurationsGeneralTypes.ts";
 import ConfigurationTagSettingsSection
     from "./ConfigurationTags/ConfigurationTagSettings/ConfigurationTagSettingsSection.tsx";
+import ConfigurationDataSection from "./ConfigurationData/ConfigurationDataSection.tsx";
+import {ConfigurationDataType} from "../../app/Interfaces/State/configurationDataState.ts";
 
 
 type ConfigurationTagRouteParams = {
@@ -66,6 +80,18 @@ function ConfigurationTagPage() {
 
     const renderTabContent = () => {
         switch(selectedTab) {
+            case 0:
+                return <ConfigurationDataSection
+                    configurationId={selectedConfigurationTag!.configuration_id}
+                    tagId={tagIdNum}
+                    dataType={ConfigurationDataType.RealTime}
+                />
+            case 1:
+                return <ConfigurationDataSection
+                    configurationId={selectedConfigurationTag!.configuration_id}
+                    tagId={tagIdNum}
+                    dataType={ConfigurationDataType.Vault}
+                />
             case 2:
                 return <ConfigurationTagSettingsSection
                     configurationId={selectedConfigurationTag!.configuration_id}
@@ -77,7 +103,7 @@ function ConfigurationTagPage() {
     };
 
     return (
-        <Container maxWidth="md" sx={{ my: 2, minHeight: '95vh' }}>
+        <Container maxWidth="lg" sx={{ my: 2, minHeight: '95vh' }}>
             <Paper elevation={3} sx={{ p: 4, borderRadius: 4 }}>
 
                 {(isLoadingTag || isLoadingConfig) && (
@@ -127,24 +153,6 @@ function ConfigurationTagPage() {
                 {(!isLoadingConfig && !isLoadingTag && selectedConfigurationTag && selectedConfiguration) && (
                     <>
                         <Box sx={{ mb: 2 }}>
-                            {/*<Button*/}
-                            {/*    component={Link}*/}
-                            {/*    to={`/configurations/${selectedConfigurationTag.configuration_id}`}*/}
-                            {/*    variant="text"*/}
-                            {/*    color="secondary"*/}
-                            {/*    startIcon={<ArrowBackIcon />}*/}
-                            {/*    sx={{*/}
-                            {/*        mb: 1,*/}
-                            {/*        px: 0,*/}
-                            {/*        '&:hover': {*/}
-                            {/*            backgroundColor: 'transparent',*/}
-                            {/*            textDecoration: 'underline'*/}
-                            {/*        }*/}
-                            {/*    }}*/}
-                            {/*>*/}
-                            {/*    Back to Configuration*/}
-                            {/*</Button>*/}
-
                             <Typography variant="h5" component="h1" gutterBottom sx={{ fontWeight: 600 }}>
                                 {selectedConfigurationTag.tag}
                             </Typography>

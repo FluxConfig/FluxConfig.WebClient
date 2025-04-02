@@ -1,6 +1,7 @@
 import {UserGlobalRole} from "../Interfaces/State/userStateTypes.ts";
 import {FluxConfigManagementError} from "../services/api.ts";
 import {UserConfigurationRole} from "../Interfaces/State/configurationsGeneralTypes.ts";
+import {ConfigurationDataType} from "../Interfaces/State/configurationDataState.ts";
 
 export function mapRoleStringEnumToType(enumStringValue: string): UserGlobalRole {
     switch (enumStringValue) {
@@ -39,5 +40,13 @@ export function mapConfigRoleTypEnumToString(role: UserConfigurationRole): strin
     switch(role) {
         case UserConfigurationRole.Member: return "Member";
         case UserConfigurationRole.Admin: return "Admin";
+    }
+}
+
+
+export function mapConfigDataTypEnumToString(dataType: ConfigurationDataType): string {
+    switch(dataType) {
+        case ConfigurationDataType.RealTime: return "RealTime";
+        case ConfigurationDataType.Vault: return "Vault";
     }
 }
