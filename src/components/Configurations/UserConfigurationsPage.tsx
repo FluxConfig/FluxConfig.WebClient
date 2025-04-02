@@ -1,10 +1,10 @@
 import {Container, Typography, Paper, Divider, Box} from '@mui/material';
-import ConfigurationsList from "./Macro/ConfigurationsList.tsx";
+import ConfigurationsList from "./GeneralMacro/ConfigurationsList.tsx";
 import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
 import React,{useEffect, useState} from "react";
 import {getUserConfigurationsAsync} from "../../app/storeSlices/configurationsGeneralSlice.ts";
 import {UserGlobalRole} from "../../app/Interfaces/State/userStateTypes.ts";
-import CreateConfigurationSection from "./Macro/CreateConfigurationSection.tsx";
+import CreateConfigurationSection from "./GeneralMacro/CreateConfigurationSection.tsx";
 
 
 function UserConfigurationsPage() {

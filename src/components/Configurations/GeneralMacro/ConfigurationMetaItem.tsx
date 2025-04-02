@@ -1,6 +1,7 @@
-import {Card, CardContent, Typography, Box} from '@mui/material';
+import {Card, CardContent, Typography, Box, CardActionArea} from '@mui/material';
 import Grid from '@mui/material/Grid';
 import {ServiceConfigurationMeta} from "../../../app/Interfaces/State/configurationsGeneralTypes.ts";
+import {Link} from "react-router-dom";
 
 interface ConfigurationItemProps {
     config: ServiceConfigurationMeta;
@@ -14,6 +15,10 @@ function ConfigurationMetaItem({ config }: ConfigurationItemProps) {
                 xs:12
             }}
         >
+            <CardActionArea
+                component={Link}
+                to={`/configurations/${config.id}`}
+            >
             <Card sx={{
                 display: 'flex',
                 border: "1px solid",
@@ -59,6 +64,7 @@ function ConfigurationMetaItem({ config }: ConfigurationItemProps) {
                     </Box>
                 </CardContent>
             </Card>
+            </CardActionArea>
         </Grid>
     );
 }

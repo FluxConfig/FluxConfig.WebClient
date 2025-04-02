@@ -8,6 +8,7 @@ import AccountSettings from "./components/Account/AccountSettings.tsx";
 import UserConfigurationsPage from "./components/Configurations/UserConfigurationsPage.tsx";
 import SystemUsersPage from "./components/SystemUsers/SystemUsersPage.tsx";
 import UserProfile from "./components/SystemUsers/UserProfile.tsx";
+import ConfigurationPage from "./components/Configurations/ConfigurationPage.tsx";
 
 function App() {
 
@@ -30,6 +31,8 @@ function App() {
                         <Route path="/account-settings" element={<AccountSettings/>}/>
                         <Route path="/system-users" element={<SystemUsersPage/>}/>
                         <Route path="/users/:userId" element={<UserProfile/>}/>
+
+                        <Route path="/configurations/:configurationId" element={<ConfigurationPage/>}/>
 
                         <Route path="*" element={
                             <Navigate

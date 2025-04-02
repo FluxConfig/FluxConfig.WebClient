@@ -20,7 +20,7 @@ import {
     clearSuccess,
     getUserMetaAsync
 } from "../../app/storeSlices/systemUsersSlice.ts";
-import ConfigurationsList from "../Configurations/Macro/ConfigurationsList.tsx";
+import ConfigurationsList from "../Configurations/GeneralMacro/ConfigurationsList.tsx";
 import {ChangeUserRoleRequest} from "../../app/Interfaces/Contracts/userCredentialsContracts.ts";
 import DeleteSystemUserAccountSection from "./Macro/DeleteSystemUserAccountSection.tsx";
 
@@ -101,7 +101,7 @@ function UserProfile() {
                 {
                     isLoading &&
                     (
-                        <Box minHeight="80vh" display="flex" justifyContent="center" alignItems="center">
+                        <Box minHeight="30vh" display="flex" justifyContent="center" alignItems="center">
                             <CircularProgress color="secondary"/>
                         </Box>
                     )
@@ -120,7 +120,7 @@ function UserProfile() {
                 )}
 
                 {
-                    selectedUser && (
+                    (!isLoading && selectedUser) && (
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                             <Typography variant="subtitle1" sx={{ fontSize: '1.1rem' }}>
                                 <b>Username:</b> {selectedUser.username}
@@ -149,7 +149,7 @@ function UserProfile() {
                 }
 
                 {
-                    selectedUser && (
+                    (!isLoading && selectedUser) && (
                         <>
                             <Divider sx={{ width: '100%', my: 2, borderBottomWidth: '2px'}}/>
 

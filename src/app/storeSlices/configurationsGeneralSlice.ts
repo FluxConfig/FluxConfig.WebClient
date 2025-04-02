@@ -14,9 +14,11 @@ const initialState: ConfigurationsGeneralState =  {
     selectedConfiguration: null,
     isLoading: false,
     isCreateConfLoading: false,
+    isConfigurationSettingsLoading: false,
     error: null,
     createConfigurationError: null,
-    success: null
+    success: null,
+    deleteSuccess: null
 }
 
 export const getUserConfigurationsAsync = createAsyncThunk(
@@ -103,6 +105,9 @@ export const configurationsGeneralSlice = createSlice({
         },
         clearSuccess: (state) => {
             state.success = null;
+        },
+        clearDeleteSuccess: (state) => {
+            state.deleteSuccess = null;
         }
     },
     extraReducers: builder => {
@@ -135,28 +140,28 @@ export const configurationsGeneralSlice = createSlice({
                 state.selectedConfiguration = null;
             })
             .addCase(deleteConfigurationAsync.pending, (state) => {
-                state.isLoading = true;
+                state.isConfigurationSettingsLoading = true;
                 state.error = null;
-                state.success = null;
+                state.deleteSuccess = null;
             })
             .addCase(deleteConfigurationAsync.fulfilled, (state) => {
-                state.isLoading = false;
+                state.isConfigurationSettingsLoading = false;
                 state.error = null;
-                state.success = "Configuration deleted"
+                state.deleteSuccess = "Configuration deleted"
                 state.selectedConfiguration = null;
             })
             .addCase(deleteConfigurationAsync.rejected, (state, action) => {
-                state.isLoading = false;
+                state.isConfigurationSettingsLoading = false;
                 state.error = action.payload as string;
-                state.success = null;
+                state.deleteSuccess = null;
             })
             .addCase(changeConfigurationNameAsync.pending, (state) => {
-                state.isLoading = true;
+                state.isConfigurationSettingsLoading = true;
                 state.error = null;
                 state.success = null;
             })
             .addCase(changeConfigurationNameAsync.fulfilled, (state, action) => {
-                state.isLoading = false;
+                state.isConfigurationSettingsLoading= false;
                 state.error = null;
                 state.success = "Configuration name changed"
                 if (state.selectedConfiguration) {
@@ -164,17 +169,17 @@ export const configurationsGeneralSlice = createSlice({
                 }
             })
             .addCase(changeConfigurationNameAsync.rejected, (state, action) => {
-                state.isLoading = false;
+                state.isConfigurationSettingsLoading = false;
                 state.error = action.payload as string;
                 state.success = null;
             })
             .addCase(changeConfigurationDescriptionAsync.pending, (state) => {
-                state.isLoading = true;
+                state.isConfigurationSettingsLoading = true;
                 state.error = null;
                 state.success = null;
             })
             .addCase(changeConfigurationDescriptionAsync.fulfilled, (state, action) => {
-                state.isLoading = false;
+                state.isConfigurationSettingsLoading = false;
                 state.error = null;
                 state.success = "Description changed"
                 if (state.selectedConfiguration) {
@@ -182,7 +187,7 @@ export const configurationsGeneralSlice = createSlice({
                 }
             })
             .addCase(changeConfigurationDescriptionAsync.rejected, (state, action) => {
-                state.isLoading = false;
+                state.isConfigurationSettingsLoading = false;
                 state.error = action.payload as string;
                 state.success = null;
             })
@@ -204,5 +209,5 @@ export const configurationsGeneralSlice = createSlice({
     }
 })
 
-export const {clearError, clearSuccess, clearCreateConfError} = configurationsGeneralSlice.actions;
+export const {clearError, clearSuccess, clearCreateConfError, clearDeleteSuccess} = configurationsGeneralSlice.actions;
 export default configurationsGeneralSlice.reducer;

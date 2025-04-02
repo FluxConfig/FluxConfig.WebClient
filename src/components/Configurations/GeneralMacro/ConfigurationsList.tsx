@@ -23,7 +23,7 @@ function ConfigurationsList({userConfigurations, error, isLoading, onPageChange,
 
     if (isLoading) {
         return (
-            <Box minHeight="80vh" display="flex" justifyContent="center" alignItems="center">
+            <Box minHeight="30vh" display="flex" justifyContent="center" alignItems="center">
                 <CircularProgress color="secondary"/>
             </Box>
         );

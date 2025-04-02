@@ -4,9 +4,11 @@ export interface ConfigurationsGeneralState {
     selectedConfiguration: ServiceConfiguration | null,
     isLoading: boolean,
     isCreateConfLoading: boolean,
+    isConfigurationSettingsLoading: boolean,
     error: string | null,
     createConfigurationError: string | null
-    success: string | null
+    success: string | null,
+    deleteSuccess: string | null
 }
 
 export interface ServiceConfigurationMeta {

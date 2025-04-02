@@ -76,7 +76,7 @@ function CreateConfigurationSection() {
             </Button>
 
             <Dialog open={dialogOpen} onClose={handleClose} maxWidth="sm" fullWidth>
-                <DialogTitle>Create New Configuration</DialogTitle>
+                <DialogTitle>Create new configuration</DialogTitle>
                 <DialogContent>
                     <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
                         {createConfigurationError && (
