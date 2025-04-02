@@ -1,8 +1,8 @@
 import axios, {AxiosError} from "axios";
 import {apiKeyHeader} from "../Interfaces/Contracts/userAuthContracts.ts";
 
-const fcmApiUrl: string = import.meta.env.VITE_FCM_BASE_URL;
-const fcInternalKey: string = import.meta.env.VITE_FC_API_KEY;
+const fcmApiUrl: string = window.appConfig?.VITE_FCM_BASE_URL || "";
+const fcInternalKey: string = atob(window.appConfig.VITE_FC_API_KEY);
 
 const api = axios.create({
     baseURL: `${fcmApiUrl}/api/fcm`,

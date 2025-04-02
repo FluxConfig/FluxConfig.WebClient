@@ -8,5 +8,8 @@ services:
     restart: always
     env_file:
       - ./.env
+    environment:
+      VITE_FCM_BASE_URL: ${VITE_FCM_BASE_URL}
+      VITE_FC_API_KEY: ${VITE_FC_API_KEY}
     ports:
-      - ${CLIENT_PORT}:3000
+      - ${CLIENT_PORT}:80
