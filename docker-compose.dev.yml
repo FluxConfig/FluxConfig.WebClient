@@ -1,0 +1,12 @@
+services:
+  web-client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fc-webclient-dev
+    image: fluxconfig.webclient:dev
+    restart: always
+    env_file:
+      - ./.env
+    ports:
+      - ${CLIENT_PORT}:3000
