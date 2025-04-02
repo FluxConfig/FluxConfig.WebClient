@@ -6,8 +6,6 @@ services:
     container_name: fc-webclient-dev
     image: fluxconfig.webclient:dev
     restart: always
-    env_file:
-      - ./.env
     environment:
       VITE_FCM_BASE_URL: ${VITE_FCM_BASE_URL}
       VITE_FC_API_KEY: ${VITE_FC_API_KEY}

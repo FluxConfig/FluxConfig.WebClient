@@ -1,0 +1,12 @@
+services:
+  fc_webclient:
+    image: fluxconfig/fluxconfig.webclient:${FC_TAG}
+    container_name: fc-webclient
+    restart: always
+    env_file:
+      - ./.env
+    environment:
+      VITE_FCM_BASE_URL: ${FCM_BASE_URL}
+      VITE_FC_API_KEY: ${FC_API_KEY}
+    ports:
+      - ${FC_CLIENT_PORT}:80
