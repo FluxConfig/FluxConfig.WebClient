@@ -36,7 +36,6 @@ export function validateUserSystemRoleStringEnum(userSystemRole: string): void {
     }
 }
 
-//TODO: Добавить при смене роли конфигурации пользователя
 export function validateUserConfigurationRoleStringEnum(userSystemRole: string): void {
     if (userSystemRole !== "Member" && userSystemRole !== "Admin") {
         throw new FluxConfigManagementError("Invalid user configuration role value.");

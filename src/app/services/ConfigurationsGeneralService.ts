@@ -15,7 +15,7 @@ export const ConfigurationsGeneralService =  {
     async getUserConfigurations(): Promise<GetConfigurationMetaResponse[]>{
         try {
             const response = await api.get<GetConfigurationMetaResponse[]>(
-                "configurations/get-all",
+                "/configurations/get-all",
                 {
                     signal: newAbortSignal(5000)
                 }
@@ -35,7 +35,7 @@ export const ConfigurationsGeneralService =  {
     async getConfiguration(request: GetConfigurationRequest): Promise<GetConfigurationResponse> {
         try {
             const response = await api.get<GetConfigurationResponseRaw>(
-                "configurations/get",
+                "/configurations/get",
                 {
                     signal: newAbortSignal(5000),
                     headers: {
@@ -72,7 +72,7 @@ export const ConfigurationsGeneralService =  {
     async deleteConfiguration(request: DeleteConfigurationRequest) {
         try {
             const response = await api.delete(
-                "configurations/delete",
+                "/configurations/delete",
                 {
                     signal: newAbortSignal(5000),
                     headers: {
@@ -108,7 +108,7 @@ export const ConfigurationsGeneralService =  {
             const trimmedName = request.new_name.trim();
 
             await api.patch(
-                "configurations/change/name",
+                "/configurations/change/name",
                 {
                     new_name: trimmedName
                 },
@@ -149,7 +149,7 @@ export const ConfigurationsGeneralService =  {
             const trimmedDescription = request.new_description.trim();
 
              await api.patch(
-                "configurations/change/description",
+                "/configurations/change/description",
                 {
                     new_description: trimmedDescription
                 },
@@ -193,7 +193,7 @@ export const ConfigurationsGeneralService =  {
             }
 
             const response = await api.post(
-                "configurations/create",
+                "/configurations/create",
                 trimmedRequest,
                 {
                     signal: newAbortSignal(5000),

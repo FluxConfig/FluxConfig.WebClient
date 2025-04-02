@@ -5,6 +5,7 @@ export interface AdminSystemUsersState{
     systemUsers: SystemUser[],
     error: string | null,
     isLoading: boolean,
+    isChangeRoleLoading: boolean,
     success: string | null,
     deleteUserIsLoading: boolean
 }

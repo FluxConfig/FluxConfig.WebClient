@@ -12,6 +12,7 @@ const initialState : AdminSystemUsersState =  {
     systemUsers: [],
     error: null,
     isLoading: false,
+    isChangeRoleLoading: false,
     success: null,
     deleteUserIsLoading: false
 }
@@ -105,12 +106,12 @@ export const systemUsersSlice = createSlice({
                 state.error = action.payload as string;
             })
             .addCase(changeUserRoleAsync.pending, (state) => {
-                state.isLoading = true;
+                state.isChangeRoleLoading = true;
                 state.error = null;
                 state.success = null;
             })
             .addCase(changeUserRoleAsync.fulfilled, (state, action) => {
-                state.isLoading = false;
+                state.isChangeRoleLoading = false;
                 state.error = null;
                 if (state.selectedUser) {
                     state.selectedUser.role = action.payload;
@@ -118,7 +119,7 @@ export const systemUsersSlice = createSlice({
                 state.success = "Role changed"
             })
             .addCase(changeUserRoleAsync.rejected, (state, action) => {
-                state.isLoading = false;
+                state.isChangeRoleLoading= false;
                 state.error = action.payload as string;
                 state.success = null;
             })

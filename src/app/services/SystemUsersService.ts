@@ -210,7 +210,7 @@ export const SystemUsersService = {
                     if (errorResponse.response.status === 404) {
                         throw new FluxConfigManagementError("User doesn't exist.");
                     } else if (errorResponse.response.status === 400) {
-                        throw new FluxConfigManagementError("Unable to change admin role.");
+                        throw new FluxConfigManagementError("Admin can't change his own role.");
                     }
                 }
             }

@@ -36,14 +36,14 @@ function DeleteConfigurationSection({configurationId}: {configurationId: number}
                 onClick={() => setDeleteDialogOpen(true)}
                 disabled={ isConfigurationSettingsLoading }
                 sx={{
-                    py: 1.5,
+                    py: 1,
                     px: 2,
                     '&:hover': {
                         backgroundColor: 'error.dark'
                     }
                 }}
             >
-                Delete configuration
+                Delete
             </Button>
 
             <Dialog

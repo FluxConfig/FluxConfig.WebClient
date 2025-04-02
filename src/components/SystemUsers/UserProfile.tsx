@@ -31,7 +31,7 @@ type UserIdRouteParams = {
 function UserProfile() {
     const {userId} = useParams<UserIdRouteParams>();
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const {selectedUser, success,  error, isLoading} = useAppSelector((state) => state.system_users);
+    const {selectedUser, success,  error, isLoading, isChangeRoleLoading} = useAppSelector((state) => state.system_users);
     const dispatch = useAppDispatch();
     const location = useLocation();
 
@@ -89,7 +89,7 @@ function UserProfile() {
                         System member
                     </Typography>
 
-                    {selectedUser &&
+                    {(!isLoading && selectedUser) &&
                         <DeleteSystemUserAccountSection
                             userId={userIdNum}
                         />
@@ -136,7 +136,7 @@ function UserProfile() {
                                     <Select
                                         value={selectedUser.role}
                                         onChange={handleRoleChange}
-                                        disabled={isLoading}
+                                        disabled={isChangeRoleLoading}
                                     >
                                         <MenuItem value="Admin">Admin</MenuItem>
                                         <MenuItem value="Trusted">Trusted</MenuItem>

@@ -40,6 +40,8 @@ function ConfigurationSettingsSection({configurationId}: {configurationId: numbe
                     </Alert>
                 )}
 
+                <Divider sx={{ width: '100%', my: 2, borderBottomWidth: '2px'}}/>
+
                 <Accordion
                     expanded={expanded === 'name'}
                     onChange={handleAccordionChange('name')}
@@ -65,7 +67,7 @@ function ConfigurationSettingsSection({configurationId}: {configurationId: numbe
                     }}
                 >
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography variant="h6" sx={{ fontWeight: 400 }}>Change configuration name</Typography>
+                        <Typography variant="h6" sx={{ fontWeight: 400 }}>Change name</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <ChangeConfigurationNameForm

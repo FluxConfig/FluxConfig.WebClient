@@ -6,20 +6,11 @@ import {
     clearError,
     getConfigurationAsync
 } from "../../app/storeSlices/configurationsGeneralSlice.ts";
-import {
-    Alert,
-    Box, Button,
-    CircularProgress,
-    Container,
-    Divider,
-    Paper,
-    Tab,
-    Tabs,
-    Typography
-} from "@mui/material";
+import {Alert, Box, Button, CircularProgress, Container, Divider, Paper, Tab, Tabs, Typography} from "@mui/material";
 import {mapConfigRoleTypEnumToString} from "../../app/Mappers/enumMappers.ts";
 import {UserConfigurationRole} from "../../app/Interfaces/State/configurationsGeneralTypes.ts";
 import ConfigurationSettingsSection from "./ConfigurationSettings/ConfigurationSettingsSection.tsx";
+import ConfigurationUsersSection from "./ConfigurationUsers/ConfigurationUsersSection.tsx";
 
 type ConfigurationIdRouteParams = {
     configurationId: string
@@ -64,8 +55,11 @@ function ConfigurationPage() {
             //     return <SettingsTab config={selectedConfiguration} />;
             // case 1:
             //     return <KeysTab config={selectedConfiguration} />;
-            // case 2:
-            //     return <UsersTab config={selectedConfiguration} />;
+            case 2:
+                return <ConfigurationUsersSection
+                    configurationId={configurationIdNum}
+                    configurationRole={selectedConfiguration ? selectedConfiguration.user_role : UserConfigurationRole.Member}
+                />
             case 3:
                 return <ConfigurationSettingsSection
                     configurationId={configurationIdNum}
@@ -167,9 +161,7 @@ function ConfigurationPage() {
                             >
                                 <Tab label="Tags" />
                                 <Tab label="Keys" />
-                                {selectedConfiguration.user_role === UserConfigurationRole.Admin && (
-                                    <Tab label="Users" />
-                                )}
+                                <Tab label="Members" />
                                 {selectedConfiguration.user_role === UserConfigurationRole.Admin && (
                                     <Tab label="Settings" />
                                 )}

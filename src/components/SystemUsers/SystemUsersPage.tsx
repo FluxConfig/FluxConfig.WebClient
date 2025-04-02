@@ -3,7 +3,7 @@ import {Container, Divider, Paper, Typography} from "@mui/material";
 import SystemUsersList from "./Macro/SystemUsersList.tsx";
 
 function SystemUsersPage() {
-    const { error, isLoading } = useAppSelector((state) => state.system_users);
+    const { error } = useAppSelector((state) => state.system_users);
 
     return (
         <Container maxWidth="lg" sx={{ my: 2, minHeight: '95vh' }}>
@@ -12,7 +12,7 @@ function SystemUsersPage() {
                        p: 4,
                        borderRadius: 2 }}>
 
-                { (!error && !isLoading) && (
+                { (!error) && (
                     <>
                         <Typography variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
                             System users
