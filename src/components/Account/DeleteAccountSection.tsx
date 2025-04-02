@@ -12,6 +12,7 @@ import {
     DialogActions,
     CircularProgress
 } from "@mui/material";
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
 function DeleteAccountSection() {
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
@@ -34,16 +35,14 @@ function DeleteAccountSection() {
         <>
             <Box sx={{ display: 'flex', justifyContent: 'left' }}>
                 <Button
-                    variant="contained"
+                    variant="outlined"
                     color="error"
                     onClick={() => setDeleteDialogOpen(true)}
                     disabled={isLoading}
+                    startIcon={<DeleteRoundedIcon/>}
                     sx={{
                         py: 1.5,
-                        px: 4,
-                        '&:hover': {
-                            backgroundColor: 'error.dark'
-                        }
+                        px: 2,
                     }}
                 >
                     Delete Account

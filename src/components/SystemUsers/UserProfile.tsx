@@ -86,7 +86,7 @@ function UserProfile() {
                     mb: 2
                 }}>
                     <Typography variant="h5" sx={{ fontWeight: 600 }}>
-                        System member
+                        System user
                     </Typography>
 
                     {(!isLoading && selectedUser) &&
@@ -153,13 +153,13 @@ function UserProfile() {
                         <>
                             <Divider sx={{ width: '100%', my: 2, borderBottomWidth: '2px'}}/>
 
-                            <Box sx={{ mb: 3 }}>
+                            <Box >
                                 <Typography variant="h6" gutterBottom sx={{
                                     fontWeight: 600,
                                     fontSize: '1.25rem',
                                     mb: 2
                                 }}>
-                                    User Configurations
+                                    {selectedUser.username} Configurations
                                 </Typography>
                                 <ConfigurationsList
                                     userConfigurations={selectedUser.configurations}

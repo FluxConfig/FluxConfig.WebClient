@@ -1,4 +1,3 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import {Provider} from "react-redux";
@@ -14,9 +13,7 @@ createRoot(rootElement).render(
         <ThemeProvider theme={theme}>
             <CssBaseline/>
                 <PersistAuth>
-                  <StrictMode>
                       <App/>
-                  </StrictMode>
                 </PersistAuth>
         </ThemeProvider>
     </Provider>

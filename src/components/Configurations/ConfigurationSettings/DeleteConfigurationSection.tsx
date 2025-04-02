@@ -10,6 +10,7 @@ import {
     DialogContentText,
     DialogTitle
 } from "@mui/material";
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
 function DeleteConfigurationSection({configurationId}: {configurationId: number}) {
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
@@ -31,16 +32,14 @@ function DeleteConfigurationSection({configurationId}: {configurationId: number}
     return (
         <>
             <Button
-                variant="contained"
+                variant="outlined"
                 color="error"
+                startIcon={<DeleteRoundedIcon/>}
                 onClick={() => setDeleteDialogOpen(true)}
                 disabled={ isConfigurationSettingsLoading }
                 sx={{
                     py: 1,
                     px: 2,
-                    '&:hover': {
-                        backgroundColor: 'error.dark'
-                    }
                 }}
             >
                 Delete

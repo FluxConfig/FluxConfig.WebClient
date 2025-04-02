@@ -10,6 +10,7 @@ import {
     DialogContentText,
     DialogTitle
 } from "@mui/material";
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
 
 function DeleteSystemUserAccountSection({userId}: {userId: number}) {
@@ -32,20 +33,18 @@ function DeleteSystemUserAccountSection({userId}: {userId: number}) {
     return (
         <>
                 <Button
-                    variant="contained"
+                    variant="outlined"
                     color="error"
                     onClick={() => setDeleteDialogOpen(true)}
                     disabled={ deleteUserIsLoading }
                     size="small"
+                    startIcon={<DeleteRoundedIcon/>}
                     sx={{
                         py: 1.5,
                         px: 2,
-                        '&:hover': {
-                            backgroundColor: 'error.dark'
-                        }
                     }}
                 >
-                    Delete user
+                    Delete
                 </Button>
 
             <Dialog
@@ -54,7 +53,7 @@ function DeleteSystemUserAccountSection({userId}: {userId: number}) {
                 aria-labelledby="delete-account-dialog"
             >
                 <DialogTitle id="delete-account-dialog" sx={{ fontWeight: 600 }}>
-                    Confirm user deletion
+                    Confirm account deletion
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText sx={{ fontSize: '1.05rem' }}>

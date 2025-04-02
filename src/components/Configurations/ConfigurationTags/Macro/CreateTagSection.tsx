@@ -22,6 +22,7 @@ import {
     MenuItem,
     SelectChangeEvent
 } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 
 function CreateConfigurationTagSection({ configurationId }: { configurationId: number }) {
     const [tagData, setTagData] = useState({
@@ -74,16 +75,12 @@ function CreateConfigurationTagSection({ configurationId }: { configurationId: n
     return (
         <>
             <Button
-                variant="contained"
+                variant="outlined"
                 onClick={() => setDialogOpen(true)}
                 color="success"
-                sx={{
-                    '&:hover': {
-                        backgroundColor: 'success.dark'
-                    }
-                }}
+                startIcon={<AddIcon/>}
             >
-                Create Tag
+                Create
             </Button>
 
             <Dialog open={dialogOpen} onClose={handleClose} maxWidth="sm" fullWidth>

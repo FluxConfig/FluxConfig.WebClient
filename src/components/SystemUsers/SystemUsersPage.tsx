@@ -6,7 +6,7 @@ function SystemUsersPage() {
     const { error } = useAppSelector((state) => state.system_users);
 
     return (
-        <Container maxWidth="lg" sx={{ my: 2, minHeight: '95vh' }}>
+        <Container maxWidth="md" sx={{ my: 2, minHeight: '95vh' }}>
             <Paper elevation={3}
                    sx={{
                        p: 4,

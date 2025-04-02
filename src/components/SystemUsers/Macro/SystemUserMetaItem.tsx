@@ -33,7 +33,7 @@ function SystemUserMetaItem({user}: {user: SystemUser}) {
                         alignItems: 'center',
                         width: '100%',
                         py: 2,
-                        px: 1
+                        px: 2
                     }}>
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
                             <Typography

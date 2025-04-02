@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Pagination, Select, MenuItem, Typography } from '@mui/material';
+import {Box, Button, CircularProgress, Pagination, Select, MenuItem, Typography, IconButton} from '@mui/material';
 import {ConfigurationDataUnit} from "../../../app/Interfaces/State/configurationDataState.ts";
 
 interface ConfigurationDataControlsProps {
@@ -13,6 +13,8 @@ interface ConfigurationDataControlsProps {
     onDeleteSelected: () => void;
     isUpdating: boolean;
 }
+import CloudUploadRoundedIcon from '@mui/icons-material/CloudUploadRounded';
+import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 
 export function ConfigurationDataControls({
                                               currentPage,
@@ -33,14 +35,13 @@ export function ConfigurationDataControls({
                         <Typography variant="body2">
                             Selected: {selectedRows.length}
                         </Typography>
-                        <Button
-                            variant="outlined"
+                        <IconButton
                             color="error"
                             onClick={onDeleteSelected}
                             size="small"
                         >
-                            Delete Selected
-                        </Button>
+                            <DeleteForeverRoundedIcon/>
+                        </IconButton>
                     </>
                 )}
             </Box>
@@ -67,11 +68,12 @@ export function ConfigurationDataControls({
 
                 <Button
                     variant="outlined"
-                    color="secondary"
+                    color="success"
                     onClick={onUpdateData}
                     disabled={isUpdating}
+                    startIcon={<CloudUploadRoundedIcon/>}
                 >
-                    {isUpdating ? <CircularProgress size={24} /> : 'Update Data'}
+                    {isUpdating ? <CircularProgress size={24} /> : 'Update'}
                 </Button>
             </Box>
         </Box>

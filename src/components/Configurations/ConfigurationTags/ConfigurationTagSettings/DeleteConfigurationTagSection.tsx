@@ -10,6 +10,7 @@ import {
     DialogTitle
 } from "@mui/material";
 import {deleteConfigurationTagAsync} from "../../../../app/storeSlices/configurationTagsSlice.ts";
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
 interface DeleteConfigurationTagSectionProps {
     configurationId: number,
@@ -36,16 +37,14 @@ function DeleteConfigurationTagSection({configurationId, tagId}: DeleteConfigura
     return (
         <>
             <Button
-                variant="contained"
+                variant="outlined"
                 color="error"
                 onClick={() => setDeleteDialogOpen(true)}
                 disabled={ isTagSettingsLoading }
+                startIcon={<DeleteRoundedIcon/>}
                 sx={{
                     py: 1,
                     px: 2,
-                    '&:hover': {
-                        backgroundColor: 'error.dark'
-                    }
                 }}
             >
                 Delete

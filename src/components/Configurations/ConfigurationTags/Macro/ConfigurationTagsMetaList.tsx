@@ -90,6 +90,7 @@ function ConfigurationTagsMetaList({tagsPerPage, configurationId}: {tagsPerPage:
             >
                 {pageConfigurationTags.map((tag) => (
                     <ConfigurationTagMetaItem
+                        key={tag.id}
                         tag={tag}
                     />
                 ))}

@@ -21,6 +21,7 @@ import {
     Select,
     MenuItem, SelectChangeEvent
 } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 
 function CreateConfigurationKeySection({ configurationId }: { configurationId: number }) {
     const [rolePermission, setRolePermission] = useState<string>('Member');
@@ -72,20 +73,16 @@ function CreateConfigurationKeySection({ configurationId }: { configurationId: n
     return (
         <>
             <Button
-                variant="contained"
+                variant="outlined"
                 onClick={() => setDialogOpen(true)}
+                startIcon={<AddIcon/>}
                 color="success"
-                sx={{
-                    '&:hover': {
-                        backgroundColor: 'success.dark'
-                    }
-                }}
             >
-                Create Key
+                Create
             </Button>
 
             <Dialog open={dialogOpen} onClose={handleClose} maxWidth="sm" fullWidth>
-                <DialogTitle>Create New Key</DialogTitle>
+                <DialogTitle>Create new key</DialogTitle>
                 <DialogContent>
                     <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
                         {addKeyError && (

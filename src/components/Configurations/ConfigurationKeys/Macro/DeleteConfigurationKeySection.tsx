@@ -10,13 +10,14 @@ import {
     DialogActions,
     DialogContent,
     DialogContentText,
-    DialogTitle
+    DialogTitle, IconButton
 } from "@mui/material";
 import {
     clearDeleteKeyError, clearDeleteKeySuccess,
     deleteConfigurationKeyAsync,
     getConfigurationKeysAsync
 } from "../../../../app/storeSlices/configurationKeysSlice.ts";
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
 function DeleteConfigurationKeySection({configurationId, configurationKey}: {configurationId: number, configurationKey: ConfigurationKey}) {
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
@@ -54,21 +55,17 @@ function DeleteConfigurationKeySection({configurationId, configurationKey}: {con
 
     return (
         <>
-            <Button
-                variant="outlined"
+            <IconButton
                 color="error"
                 onClick={handleOpen}
                 disabled={ isDeleteKeyLoading }
                 size="small"
-                sx={{
-                    width: '100px'
-                }}
             >
-                Delete
-            </Button>
+                <DeleteRoundedIcon/>
+            </IconButton>
 
-            <Dialog open={deleteDialogOpen} onClose={handleClose} maxWidth="sm" fullWidth>
-                <DialogTitle>Delete configuration api key</DialogTitle>
+            <Dialog open={deleteDialogOpen} onClose={handleClose} maxWidth="sm">
+                <DialogTitle>Confirm api key deletion</DialogTitle>
                 <DialogContent>
                     <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
                         {deleteKeyError && (
@@ -87,6 +84,8 @@ function DeleteConfigurationKeySection({configurationId, configurationKey}: {con
 
                     <DialogContentText sx={{ fontSize: '1.05rem' }}>
                         Are you sure you want to delete this API key?
+                        <br/>
+                        This action is permanent and cannot be undone.
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

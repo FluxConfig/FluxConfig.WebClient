@@ -66,7 +66,7 @@ function ConfigurationKeysList({keysPerPage, configurationId, configurationRole}
     }
 
 
-    if (!error && configurationKeys.length === 0){
+    if (!error && !isLoading && configurationKeys.length === 0){
         return (
             <Box  minHeight="20vh" display="flex" justifyContent="center" alignItems="center">
                 <Alert

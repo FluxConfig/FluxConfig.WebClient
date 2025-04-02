@@ -17,6 +17,7 @@ import {
     DialogTitle,
     TextField
 } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 
 function CreateConfigurationSection() {
     const [formData, setFormData] = useState<CreateConfigurationRequest>(
@@ -63,14 +64,10 @@ function CreateConfigurationSection() {
     return (
         <>
             <Button
-                variant="contained"
+                variant="outlined"
                 onClick={() => setDialogOpen(true)}
                 color="success"
-                sx={{
-                    '&:hover': {
-                        backgroundColor: 'success.dark'
-                    }
-                }}
+                startIcon={<AddIcon/>}
             >
                 Create
             </Button>
@@ -125,7 +122,7 @@ function CreateConfigurationSection() {
                                 onClick={handleSubmit}
                                 color="success"
                                 variant="contained"
-                                disabled={isCreateConfLoading}
+                                disabled={isCreateConfLoading || !formData.name}
                                 startIcon={isCreateConfLoading && <CircularProgress size={20} color="inherit" />}
                             >
                                 {isCreateConfLoading ? 'Creating...' : 'Create'}

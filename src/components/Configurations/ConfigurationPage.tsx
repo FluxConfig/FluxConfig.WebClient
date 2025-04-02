@@ -131,7 +131,7 @@ function ConfigurationPage() {
                 )}
 
                 {
-                    (!isLoading && selectedConfiguration) && (
+                    (isLoading === false && selectedConfiguration) && (
 
                         <>
                             <Box sx={{

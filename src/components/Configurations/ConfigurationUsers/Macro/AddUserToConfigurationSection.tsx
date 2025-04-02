@@ -15,6 +15,7 @@ import {
     DialogTitle,
     TextField
 } from "@mui/material";
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 function AddUserToConfigurationSection({configurationId}: {configurationId: number}) {
     const [userEmail, setUserEmail] = useState<string>('')
@@ -59,14 +60,10 @@ function AddUserToConfigurationSection({configurationId}: {configurationId: numb
     return (
         <>
             <Button
-                variant="contained"
+                variant="outlined"
                 onClick={() => setDialogOpen(true)}
                 color="success"
-                sx={{
-                    '&:hover': {
-                        backgroundColor: 'success.dark'
-                    }
-                }}
+                startIcon={<PersonAddIcon/>}
             >
                 Invite
             </Button>
@@ -111,7 +108,7 @@ function AddUserToConfigurationSection({configurationId}: {configurationId: numb
                                 onClick={handleSubmit}
                                 color="success"
                                 variant="contained"
-                                disabled={isAddUserLoading}
+                                disabled={isAddUserLoading || !userEmail}
                                 startIcon={isAddUserLoading&& <CircularProgress size={20} color="inherit" />}
                             >
                                 {isAddUserLoading ? 'Inviting...' : 'Invite'}

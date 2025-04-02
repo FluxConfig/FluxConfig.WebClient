@@ -9,7 +9,7 @@ import {
     DialogActions,
     DialogContent,
     DialogContentText,
-    DialogTitle
+    DialogTitle, IconButton
 } from "@mui/material";
 import {
     clearDeleteUserError, clearDeleteUserSuccess,
@@ -17,6 +17,7 @@ import {
     getConfigurationUsersAsync
 } from "../../../../app/storeSlices/configurationUsersSlice.ts";
 import {ConfigurationMember} from "../../../../app/Interfaces/State/configurationUsersTypes.ts";
+import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 
 function DeleteUserFromConfigurationSection({configurationId, configurationUser }: {configurationId: number, configurationUser: ConfigurationMember}) {
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
@@ -54,17 +55,17 @@ function DeleteUserFromConfigurationSection({configurationId, configurationUser 
 
     return (
         <>
-            <Button
-                variant="outlined"
+            <IconButton
                 color="error"
                 onClick={handleOpen}
+                size="small"
                 disabled={ isDeleteUserLoading }
             >
-                Delete
-            </Button>
+                <PersonRemoveIcon/>
+            </IconButton>
 
-            <Dialog open={deleteDialogOpen} onClose={handleClose} maxWidth="sm" fullWidth>
-                <DialogTitle>Delete user from configuration</DialogTitle>
+            <Dialog open={deleteDialogOpen} onClose={handleClose} maxWidth="sm">
+                <DialogTitle>Confirm configuration member deletion</DialogTitle>
                 <DialogContent>
                     <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
                         {deleteUserError && (

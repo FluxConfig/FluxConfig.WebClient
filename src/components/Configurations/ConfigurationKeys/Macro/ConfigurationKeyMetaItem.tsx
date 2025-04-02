@@ -1,10 +1,12 @@
 import {UserConfigurationRole} from "../../../../app/Interfaces/State/configurationsGeneralTypes.ts";
 import {ConfigurationKey} from "../../../../app/Interfaces/State/configurationKeysTypes.ts";
-import {Alert, Box, Button, Card, CardContent, IconButton, Snackbar, Typography} from "@mui/material";
+import {Alert, Box, Card, CardContent, IconButton, Snackbar, Typography} from "@mui/material";
 import Grid from "@mui/material/Grid";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import {useState} from "react";
 import DeleteConfigurationKeySection from "./DeleteConfigurationKeySection.tsx";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 
 interface ConfigurationKeyMetaItemProps {
@@ -87,15 +89,19 @@ function ConfigurationKeyMetaItem({configurationKey, configurationId, configurat
                         gap: 1,
                         alignItems: 'flex-end'
                     }}>
-                        <Button
-                            variant="outlined"
+                        <IconButton
+                            // variant="outlined"
                             size="small"
                             color="secondary"
                             onClick={() => setShowKeyId(!showKeyId)}
-                            sx={{ width: '100px' }}
+                            // sx={{ width: '100px' }}
                         >
-                            {showKeyId ? 'Hide' : 'Show'}
-                        </Button>
+                            {!showKeyId ?
+                                <VisibilityIcon/>
+                                :
+                                <VisibilityOffIcon/>
+                            }
+                        </IconButton>
 
                         {
                             (configurationRole === UserConfigurationRole.Admin) &&
