@@ -1,8 +1,10 @@
-import {Box, Container} from "@mui/material";
+import {Box} from "@mui/material";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./components/Auth/Login";
 import ProtectedRoute from "./components/Auth/ProtectedRoute.tsx";
 import Register from "./components/Auth/Register.tsx";
+import AppLayout from "./components/Layouts/AppLayout.tsx";
+import AccountSettings from "./components/Account/AccountSettings.tsx";
 
 function App() {
 
@@ -15,35 +17,28 @@ function App() {
               minHeight: '100vh',
             }}
             >
-          <Container
-              maxWidth={false}
-              component="main"
-              sx={{
-                flex: 1
-              }}
-              disableGutters>
             <Routes>
                 <Route path="/sign-in" element={<Login/>}/>
                 <Route path="/sign-up" element={<Register/>}/>
 
-                <Route element={<ProtectedRoute/>}>
-                    <Route path = '/' element={(
-                        <>
-                        </>)}/>
+                <Route element={<ProtectedRoute />}>
+                    <Route element={<AppLayout />}>
+                        <Route path="/" element={<></>} />
+                        <Route path="/account-settings" element={<AccountSettings/>}/>
 
-                    <Route path="*" element={
-                        <Navigate
-                            to="/"
-                            replace
-                            state={{
-                                from: '404',
-                                message: 'Page not found'
-                            }}
-                        />
-                    } />
+                        <Route path="*" element={
+                            <Navigate
+                                to="/"
+                                replace
+                                state={{
+                                    from: '404',
+                                    message: 'Page not found'
+                                }}
+                            />
+                        } />
+                    </Route>
                 </Route>
             </Routes>
-          </Container>
         </Box>
       </Router>
   )

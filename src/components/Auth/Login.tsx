@@ -3,7 +3,7 @@ import {LoginCredentials} from "../../app/Interfaces/Contracts/userAuthContracts
 import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
 import {useNavigate} from "react-router-dom";
 import {clearError, loginAsync} from "../../app/storeSlices/userCredentialsSlice.ts";
-import AuthLayout from "./Macro/AuthLayout.tsx";
+import AuthLayout from "../Layouts/AuthLayout.tsx";
 import {
     Alert,
     AlertTitle,

@@ -11,6 +11,8 @@ import {
 import api, {ApiError, FluxConfigManagementError, newAbortSignal, ProcessError} from "./api.ts";
 import {AxiosError} from "axios";
 import {validateEmail, validatePassword, validateUsername, validateUserSystemRoleStringEnum} from "./validators.ts";
+import {deleteCookie} from "./AuthService.ts";
+import {sessionKey} from "../Interfaces/Contracts/userAuthContracts.ts";
 
 
 export const SystemUsersService = {
@@ -43,7 +45,7 @@ export const SystemUsersService = {
                     if (errorResponse.response.status === 404) {
                         throw new FluxConfigManagementError("User doesnt exist.");
                     } else if (errorResponse.response.status === 400) {
-                        throw new FluxConfigManagementError("Invalid new email format.");
+                        throw new FluxConfigManagementError("Invalid email format.");
                     } else if (errorResponse.response.status === 409) {
                         throw new FluxConfigManagementError("Email is already taken.")
                     }
@@ -134,6 +136,7 @@ export const SystemUsersService = {
                     signal: newAbortSignal(5000)
                 }
             )
+            deleteCookie(sessionKey);
 
             return response.data;
         }

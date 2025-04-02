@@ -31,7 +31,7 @@ function validateRegisterRequest(request: RegisterCredentials) {
     validatePassword(request.password, request.confirmPassword);
 }
 
-function deleteCookie(name: string) {
+export function deleteCookie(name: string) {
     const date = new Date();
     date.setTime(date.getTime() + (-1 * 24 * 60 * 60 * 1000));
 

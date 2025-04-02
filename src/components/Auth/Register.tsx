@@ -3,7 +3,7 @@ import {RegisterCredentials, RegisterCredentialsViolations} from "../../app/Inte
 import {clearError, loginAsync, registerAsync } from "../../app/storeSlices/userCredentialsSlice.ts";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks.ts";
-import AuthLayout from "./Macro/AuthLayout.tsx";
+import AuthLayout from "../Layouts/AuthLayout.tsx";
 import AuthLogo from "./Macro/AuthLogo.tsx";
 import {Alert, Divider, Box, AlertTitle, Button, CircularProgress,} from "@mui/material";
 import AuthTextField from "./Macro/AuthTextFiled.tsx";

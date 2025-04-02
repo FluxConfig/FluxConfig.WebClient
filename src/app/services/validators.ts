@@ -8,7 +8,7 @@ export function validatePassword(password: string, confirmPassword: string): voi
     } else if (password.length > 50) {
         throw new FluxConfigManagementError("Password must contain at most 50 characters");
     } else if (password.trim() !== confirmPassword.trim()) {
-        throw new FluxConfigManagementError("Password doesn't match confirm password value");
+        throw new FluxConfigManagementError("Password doesn't match confirm password");
     }
 }
 

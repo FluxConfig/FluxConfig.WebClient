@@ -80,4 +80,12 @@ export function mapRoleStringEnumToType(enumStringValue: string ): UserGlobalRol
     }
 }
 
+export function mapRoleTypEnumToString(role: UserGlobalRole): string {
+    switch(role) {
+        case UserGlobalRole.Member: return "Member";
+        case UserGlobalRole.Trusted: return "Trusted";
+        case UserGlobalRole.Admin: return "Admin";
+    }
+}
+
 export default api;

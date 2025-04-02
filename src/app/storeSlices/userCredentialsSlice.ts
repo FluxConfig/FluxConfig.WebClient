@@ -14,6 +14,7 @@ const initialState: AuthState = {
     isLoading: false,
     isAuthCheckLoading: false,
     error: null,
+    success: null
 }
 
 export const loginAsync = createAsyncThunk(
@@ -118,6 +119,9 @@ export const userCredentialsSlice = createSlice({
     reducers: {
         clearError: (state) => {
             state.error = null;
+        },
+        clearSuccess: (state) => {
+            state.success = null;
         }
     },
     extraReducers: builder => {
@@ -178,6 +182,7 @@ export const userCredentialsSlice = createSlice({
             .addCase(changeEmailAsync.pending, (state) => {
                 state.isLoading = true;
                 state.error = null;
+                state.success = null;
             })
             .addCase(changeEmailAsync.fulfilled, (state, action) => {
                 state.isLoading = false;
@@ -185,26 +190,32 @@ export const userCredentialsSlice = createSlice({
                 if (state.user) {
                     state.user.email = action.payload;
                 }
+                state.success = "Email changed"
             })
             .addCase(changeEmailAsync.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload as string;
+                state.success = null;
             })
             .addCase(changePasswordAsync.pending, (state) => {
                 state.isLoading = true;
                 state.error = null;
+                state.success = null;
             })
             .addCase(changePasswordAsync.fulfilled, (state) => {
                 state.isLoading = false;
                 state.error = null;
+                state.success = "Password changed"
             })
             .addCase(changePasswordAsync.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload as string;
+                state.success = null;
             })
             .addCase(changeUsernameAsync.pending, (state) => {
                 state.isLoading = true;
                 state.error = null;
+                state.success = null;
             })
             .addCase(changeUsernameAsync.fulfilled, (state, action) => {
                 state.isLoading = false;
@@ -212,10 +223,12 @@ export const userCredentialsSlice = createSlice({
                 if (state.user) {
                     state.user.username = action.payload;
                 }
+                state.success = "Username changed "
             })
             .addCase(changeUsernameAsync.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload as string;
+                state.success = null;
             })
             .addCase(deleteAccountAsync.pending, (state) => {
                 state.isLoading = true;
@@ -233,5 +246,5 @@ export const userCredentialsSlice = createSlice({
     }
 })
 
-export const { clearError } = userCredentialsSlice.actions;
+export const { clearError, clearSuccess } = userCredentialsSlice.actions;
 export default userCredentialsSlice.reducer;
