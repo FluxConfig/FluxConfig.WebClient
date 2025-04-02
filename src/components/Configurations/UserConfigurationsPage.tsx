@@ -1,13 +1,16 @@
-import {Container, Typography, Paper, Divider} from '@mui/material';
+import {Container, Typography, Paper, Divider, Box} from '@mui/material';
 import ConfigurationsList from "./Macro/ConfigurationsList.tsx";
 import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
 import React,{useEffect, useState} from "react";
 import {getUserConfigurationsAsync} from "../../app/storeSlices/configurationsGeneralSlice.ts";
+import {UserGlobalRole} from "../../app/Interfaces/State/userStateTypes.ts";
+import CreateConfigurationSection from "./Macro/CreateConfigurationSection.tsx";
 
 
-function ConfigurationsPage() {
+function UserConfigurationsPage() {
     const [currentPage, setCurrentPage] = useState<number>(1);
     const {userConfigurations, error, isLoading} = useAppSelector((state) => state.configurations_general);
+    const {user} = useAppSelector((state) => state.user);
 
     const dispatch = useAppDispatch();
 
@@ -31,9 +34,22 @@ function ConfigurationsPage() {
                    sx={{
                        p: 4,
                        borderRadius: 2 }}>
-                <Typography variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
-                    Configurations
-                </Typography>
+                <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    mb: 2
+                }}>
+                    <Typography variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
+                        Configurations
+                    </Typography>
+
+                    {
+                        (user && user.role >= UserGlobalRole.Trusted) &&
+                        <CreateConfigurationSection/>
+                    }
+
+                </Box>
 
                 <Divider sx={{ width: '100%', my: 2, borderBottomWidth: '2px'}}/>
 
@@ -50,4 +66,4 @@ function ConfigurationsPage() {
     );
 }
 
-export default ConfigurationsPage;
+export default UserConfigurationsPage;

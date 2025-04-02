@@ -10,7 +10,6 @@ import {
     Paper,
     Typography
 } from '@mui/material';
-import {mapRoleTypEnumToString} from "../../app/services/api.ts";
 import {UserGlobalRole} from "../../app/Interfaces/State/userStateTypes.ts";
 import UpdateEmailForm from "./UpdateEmailForm.tsx";
 import UpdateUsernameForm from "./UpdateUsernameForm.tsx";
@@ -19,6 +18,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import React, {useState} from "react";
 import {clearError, clearSuccess} from "../../app/storeSlices/userCredentialsSlice.ts";
 import DeleteAccountSection from "./DeleteAccountSection.tsx";
+import {mapRoleTypEnumToString} from "../../app/Mappers/enumMappers.ts";
 
 const AccountSettings = () => {
     const [expanded, setExpanded] = useState<string | false>(false);

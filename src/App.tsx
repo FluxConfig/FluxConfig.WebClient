@@ -5,7 +5,7 @@ import ProtectedRoute from "./components/Auth/ProtectedRoute.tsx";
 import Register from "./components/Auth/Register.tsx";
 import AppLayout from "./components/Layouts/AppLayout.tsx";
 import AccountSettings from "./components/Account/AccountSettings.tsx";
-import ConfigurationsPage from "./components/Configurations/ConfigurationsPage.tsx";
+import UserConfigurationsPage from "./components/Configurations/UserConfigurationsPage.tsx";
 import SystemUsersPage from "./components/SystemUsers/SystemUsersPage.tsx";
 import UserProfile from "./components/SystemUsers/UserProfile.tsx";
 
@@ -26,7 +26,7 @@ function App() {
 
                 <Route element={<ProtectedRoute />}>
                     <Route element={<AppLayout />}>
-                        <Route path="/" element={<ConfigurationsPage/>}/>
+                        <Route path="/" element={<UserConfigurationsPage/>}/>
                         <Route path="/account-settings" element={<AccountSettings/>}/>
                         <Route path="/system-users" element={<SystemUsersPage/>}/>
                         <Route path="/users/:userId" element={<UserProfile/>}/>

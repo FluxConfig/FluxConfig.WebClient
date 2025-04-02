@@ -1,7 +1,7 @@
 import api, {
     ApiError,
     FluxConfigManagementError,
-    mapRoleStringEnumToType, newAbortSignal,
+    newAbortSignal,
     ProcessError
 } from "./api.ts";
 import {AxiosError} from "axios";
@@ -13,6 +13,7 @@ import {
     RegisterCredentials, sessionKey
 } from "../Interfaces/Contracts/userAuthContracts.ts";
 import {validateEmail, validatePassword, validateUsername} from "./validators.ts";
+import {mapRoleStringEnumToType} from "../Mappers/enumMappers.ts";
 
 
 function validateLoginRequest(request: LoginCredentials) {
@@ -69,7 +70,7 @@ export const AuthService = {
             const loginErrorHandler = (errorResponse: AxiosError<ApiError>) => {
                 if (errorResponse.response) {
                     if (errorResponse.response.status === 404) {
-                        throw new FluxConfigManagementError("User doesnt exist.");
+                        throw new FluxConfigManagementError("User doesn't exist.");
                     } else if (errorResponse.response.status === 400) {
                         throw new FluxConfigManagementError("Incorrect password provided.");
                     }
@@ -143,7 +144,7 @@ export const AuthService = {
             const checkAuthErrorHandler = (errorResponse: AxiosError<ApiError>) => {
                 if (errorResponse.response) {
                     if (errorResponse.response.status === 404) {
-                        throw new FluxConfigManagementError("User doesnt exist.");
+                        throw new FluxConfigManagementError("User doesn't exist.");
                     }
                 }
             }

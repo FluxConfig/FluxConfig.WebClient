@@ -43,7 +43,7 @@ export const SystemUsersService = {
             const customErrorHandler = (errorResponse: AxiosError<ApiError>) => {
                 if (errorResponse.response) {
                     if (errorResponse.response.status === 404) {
-                        throw new FluxConfigManagementError("User doesnt exist.");
+                        throw new FluxConfigManagementError("User doesn't exist.");
                     } else if (errorResponse.response.status === 400) {
                         throw new FluxConfigManagementError("Invalid email format.");
                     } else if (errorResponse.response.status === 409) {
@@ -80,7 +80,7 @@ export const SystemUsersService = {
             const customErrorHandler = (errorResponse: AxiosError<ApiError>) => {
                 if (errorResponse.response) {
                     if (errorResponse.response.status === 404) {
-                        throw new FluxConfigManagementError("User doesnt exist.");
+                        throw new FluxConfigManagementError("User doesn't exist.");
                     } else if (errorResponse.response.status === 400) {
                         throw new FluxConfigManagementError("New password must be different from current password.");
                     }
@@ -117,7 +117,7 @@ export const SystemUsersService = {
             const customErrorHandler = (errorResponse: AxiosError<ApiError>) => {
                 if (errorResponse.response) {
                     if (errorResponse.response.status === 404) {
-                        throw new FluxConfigManagementError("User doesnt exist.");
+                        throw new FluxConfigManagementError("User doesn't exist.");
                     } else if (errorResponse.response.status === 400) {
                         throw new FluxConfigManagementError("Invalid new username format.");
                     }
@@ -148,7 +148,7 @@ export const SystemUsersService = {
             const customErrorHandler = (errorResponse: AxiosError<ApiError>) => {
                 if (errorResponse.response) {
                     if (errorResponse.response.status === 404) {
-                        throw new FluxConfigManagementError("User doesnt exist.");
+                        throw new FluxConfigManagementError("User doesn't exist.");
                     }
                 }
             }
@@ -177,7 +177,7 @@ export const SystemUsersService = {
             const customErrorHandler = (errorResponse: AxiosError<ApiError>) => {
                 if (errorResponse.response) {
                     if (errorResponse.response.status === 404) {
-                        throw new FluxConfigManagementError("User doesnt exist.");
+                        throw new FluxConfigManagementError("User doesn't exist.");
                     }
                 }
             }
@@ -208,7 +208,7 @@ export const SystemUsersService = {
             const customErrorHandler = (errorResponse: AxiosError<ApiError>) => {
                 if (errorResponse.response) {
                     if (errorResponse.response.status === 404) {
-                        throw new FluxConfigManagementError("User doesnt exist.");
+                        throw new FluxConfigManagementError("User doesn't exist.");
                     } else if (errorResponse.response.status === 400) {
                         throw new FluxConfigManagementError("Unable to change admin role.");
                     }
@@ -259,7 +259,7 @@ export const SystemUsersService = {
             const customErrorHandler = (errorResponse: AxiosError<ApiError>) => {
                 if (errorResponse.response) {
                     if (errorResponse.response.status === 404) {
-                        throw new FluxConfigManagementError("User doesnt exist.");
+                        throw new FluxConfigManagementError("User doesn't exist.");
                     }
                 }
             }

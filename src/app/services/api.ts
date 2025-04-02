@@ -1,9 +1,8 @@
 import axios, {AxiosError} from "axios";
 import {apiKeyHeader} from "../Interfaces/Contracts/userAuthContracts.ts";
-import {UserGlobalRole} from "../Interfaces/State/userStateTypes.ts";
 
 const fcmApiUrl: string = import.meta.env.VITE_FCM_BASE_URL;
-const fcInternalKey = import.meta.env.VITE_FC_API_KEY;
+const fcInternalKey: string = import.meta.env.VITE_FC_API_KEY;
 
 const api = axios.create({
     baseURL: `${fcmApiUrl}/api/fcm`,
@@ -69,23 +68,6 @@ export function ProcessError(error: unknown, endpointCustomHandler?: (errorRespo
     }
 
     throw new FluxConfigManagementError(error instanceof Error ? error.message : "Unexpected error occurred.");
-}
-
-export function mapRoleStringEnumToType(enumStringValue: string ): UserGlobalRole {
-    switch (enumStringValue) {
-        case "Member": return UserGlobalRole.Member;
-        case "Trusted": return UserGlobalRole.Trusted;
-        case "Admin": return UserGlobalRole.Admin;
-        default: throw new FluxConfigManagementError(`Invalid role type returned from FluxConfig.Management api: ${enumStringValue}`);
-    }
-}
-
-export function mapRoleTypEnumToString(role: UserGlobalRole): string {
-    switch(role) {
-        case UserGlobalRole.Member: return "Member";
-        case UserGlobalRole.Trusted: return "Trusted";
-        case UserGlobalRole.Admin: return "Admin";
-    }
 }
 
 export default api;

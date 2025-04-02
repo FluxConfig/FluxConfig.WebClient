@@ -1,11 +1,11 @@
 import {Box, CircularProgress, Alert, AlertTitle, Pagination} from '@mui/material';
 import Grid from '@mui/material/Grid';
 import ConfigurationMetaItem from "./ConfigurationMetaItem.tsx";
-import {ServiceConfiguration} from "../../../app/Interfaces/State/configurationsGeneralTypes.ts";
+import {ServiceConfigurationMeta} from "../../../app/Interfaces/State/configurationsGeneralTypes.ts";
 import React from "react";
 
 interface ConfigurationListProps {
-    userConfigurations: ServiceConfiguration[],
+    userConfigurations: ServiceConfigurationMeta[],
     error: string | null,
     isLoading: boolean,
     onPageChange: (event: React.ChangeEvent<unknown>, page: number) => void,

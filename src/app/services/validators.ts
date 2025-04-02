@@ -35,3 +35,32 @@ export function validateUserSystemRoleStringEnum(userSystemRole: string): void {
         throw new FluxConfigManagementError("Invalid user global role value.");
     }
 }
+
+//TODO: Добавить при смене роли конфигурации
+export function validateUserConfigurationRoleStringEnum(userSystemRole: string): void {
+    if (userSystemRole !== "Member" && userSystemRole !== "Admin") {
+        throw new FluxConfigManagementError("Invalid user configuration role value.");
+    }
+}
+
+export function validateConfigurationName(name: string): void {
+    if (!name.trim() || name.length < 1 ) {
+        throw new FluxConfigManagementError("Configuration name is required");
+    } else if (name.length > 100) {
+        throw new FluxConfigManagementError("Configuration name must contain at most 100 characters");
+    }
+}
+
+export function validateConfigurationTagName(tag: string): void {
+    if (!tag.trim() || tag.length < 1 ) {
+        throw new FluxConfigManagementError("Configuration tag name is required");
+    } else if (tag.length > 30) {
+        throw new FluxConfigManagementError("Configuration tag name must contain at most 30 characters");
+    }
+}
+
+export function validateConfigurationDescription(description: string): void {
+    if (description.length > 500) {
+        throw new FluxConfigManagementError("Configuration description must contain at most 500 characters");
+    }
+}

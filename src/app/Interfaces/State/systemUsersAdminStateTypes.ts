@@ -1,4 +1,4 @@
-import {ServiceConfiguration} from "./configurationsGeneralTypes.ts";
+import {ServiceConfigurationMeta} from "./configurationsGeneralTypes.ts";
 
 export interface AdminSystemUsersState{
     selectedUser: SystemUserWithConfigs | null,
@@ -17,5 +17,5 @@ export interface SystemUser {
 }
 
 export interface SystemUserWithConfigs extends SystemUser{
-    configurations: ServiceConfiguration[]
+    configurations: ServiceConfigurationMeta[]
 }

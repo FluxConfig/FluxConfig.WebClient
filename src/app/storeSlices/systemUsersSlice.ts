@@ -131,6 +131,7 @@ export const systemUsersSlice = createSlice({
                 state.deleteUserIsLoading = false;
                 state.error = null;
                 state.success = "Account deleted"
+                state.selectedUser = null;
             })
             .addCase(deleteUserAccountAsync.rejected, (state, action) => {
                 state.deleteUserIsLoading = false;

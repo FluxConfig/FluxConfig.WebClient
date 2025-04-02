@@ -5,8 +5,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import React, {useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
 import {logoutAsync} from "../../app/storeSlices/userCredentialsSlice.ts";
-import { mapRoleTypEnumToString } from "../../app/services/api.ts";
 import { Link } from "react-router-dom";
+import {mapRoleTypEnumToString} from "../../app/Mappers/enumMappers.ts";
 
 function HeaderAccountMenu() {
     const dispatch = useAppDispatch();

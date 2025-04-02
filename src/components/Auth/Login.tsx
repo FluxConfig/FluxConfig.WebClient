@@ -60,7 +60,7 @@ function Login() {
         await dispatch(loginAsync(loginCredentials));
     }
 
-    function handleRemeberMeChange(e: React.ChangeEvent<HTMLInputElement>) {
+    function handleRememberMeChange(e: React.ChangeEvent<HTMLInputElement>) {
         setLoginCredentials({
             ...loginCredentials,
             [e.target.name]: e.target.checked
@@ -123,7 +123,7 @@ function Login() {
                             <Checkbox
                                 name="remember_user"
                                 checked={loginCredentials.remember_user}
-                                onChange={handleRemeberMeChange}
+                                onChange={handleRememberMeChange}
                                 color="secondary"
                                 disabled={isLoading}
                             />

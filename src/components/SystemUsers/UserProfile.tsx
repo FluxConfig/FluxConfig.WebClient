@@ -167,7 +167,7 @@ function UserProfile() {
                                     isLoading={isLoading}
                                     currentPage={currentPage}
                                     onPageChange={handlePageChange}
-                                    configurationsPerPage={10}
+                                    configurationsPerPage={5}
                                 />
                             </Box>
                         </>

@@ -1,9 +1,9 @@
 import {Card, CardContent, Typography, Box} from '@mui/material';
 import Grid from '@mui/material/Grid';
-import {ServiceConfiguration} from "../../../app/Interfaces/State/configurationsGeneralTypes.ts";
+import {ServiceConfigurationMeta} from "../../../app/Interfaces/State/configurationsGeneralTypes.ts";
 
 interface ConfigurationItemProps {
-    config: ServiceConfiguration;
+    config: ServiceConfigurationMeta;
 }
 
 function ConfigurationMetaItem({ config }: ConfigurationItemProps) {
